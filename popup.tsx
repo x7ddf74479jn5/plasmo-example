@@ -1,26 +1,18 @@
-import { useState } from "react"
+import "./style.css"
 
 function IndexPopup() {
-  const [data, setData] = useState("")
+  document.body.style.width = "15rem"
+  document.body.style.height = "15rem"
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        padding: 16
-      }}>
-      <h2>
-        Welcome to your{" "}
-        <a href="https://www.plasmo.com" target="_blank">
-          Plasmo
-        </a>{" "}
-        Extension!
-      </h2>
-      <input onChange={(e) => setData(e.target.value)} value={data} />
-      <a href="https://docs.plasmo.com" target="_blank">
-        View Docs
-      </a>
+    <div className="flex h-screen items-center justify-center">
+      <p>どの言語に翻訳しますか？</p>
+      <select name="target_lang">
+        <option value="EN">英語</option>
+        <option value="KO">韓国語</option>
+        <option value="ZH">中国語</option>
+        <option value="JA">日本語</option>
+      </select>
     </div>
   )
 }
