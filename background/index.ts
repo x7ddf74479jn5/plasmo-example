@@ -1,3 +1,10 @@
+import { Storage } from "@plasmohq/storage"
+
+import { translate } from "~app/translate"
+
+const storage = new Storage()
+const lang = await storage.get("target_lang")
+
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "translation",
@@ -9,9 +16,14 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   if (!!tab) {
     switch (info.menuItemId) {
-      case "translation":
-        console.log(info.selectionText)
+      case "translation": {
+        const selectedText =
+          info.selectionText !== undefined ? info.selectionText : ""
+        const userTargetLang = lang ?? "EN"
+        const translatedText = await translate(selectedText, userTargetLang)
+        console.log(translatedText)
         break
+      }
     }
   }
 })
