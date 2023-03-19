@@ -1,3 +1,4 @@
+import { createEmotionCache } from "@mantine/core"
 import {
   ActionIcon,
   Avatar,
@@ -13,10 +14,13 @@ import {
 } from "@mantine/core"
 import { useClickOutside } from "@mantine/hooks"
 import IconUrl from "data-base64:~assets/icon.png"
+import cssText from "data-text:~style.css"
 import { useState } from "react"
 import { MdDone, MdOutlineContentCopy, MdVolumeUp } from "react-icons/md"
 
-type Props = {
+import { ThemeProvider } from "~theme"
+
+type ContentProps = {
   translatedText: string
   originalText: string
   targetLang: string
@@ -25,7 +29,7 @@ export const Content = ({
   translatedText,
   originalText,
   targetLang
-}: Props) => {
+}: ContentProps) => {
   const [opened, setOpened] = useState(true)
   const [dialog, setDialog] = useState<HTMLDivElement>(null)
 
@@ -87,3 +91,43 @@ export const Content = ({
     <></>
   )
 }
+
+const styleElement = document.createElement("style")
+
+const styleCache = createEmotionCache({
+  key: "plasmo-mantine-cache",
+  prepend: true,
+  container: styleElement
+})
+
+styleCache.sheet.insert(cssText)
+
+export const getStyle = () => styleElement
+
+type Props = {
+  translatedText: string
+  originalText: string
+  targetLang: string
+}
+
+const Main = ({
+  translatedText = "ここに翻訳したテキストが入る",
+  originalText = "ここに翻訳前のテキストが入る",
+  targetLang = "EN"
+}: Props) => {
+  return (
+    <ThemeProvider emotionCache={styleCache}>
+      <div className="absolute w-full left-0 top-0 z-50">
+        <div className="absolute left-4 top-4 z-50">
+          <Content
+            translatedText={translatedText}
+            originalText={originalText}
+            targetLang={targetLang}
+          />
+        </div>
+      </div>
+    </ThemeProvider>
+  )
+}
+
+export default Main
