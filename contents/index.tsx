@@ -18,6 +18,9 @@ import cssText from "data-text:~style.css"
 import { useState } from "react"
 import { MdDone, MdOutlineContentCopy, MdVolumeUp } from "react-icons/md"
 
+import { useMessage } from "@plasmohq/messaging/hook"
+
+import type { ShowRequest } from "~background"
 import { ThemeProvider } from "~theme"
 
 type ContentProps = {
@@ -110,11 +113,7 @@ type Props = {
   targetLang: string
 }
 
-const Main = ({
-  translatedText = "ここに翻訳したテキストが入る",
-  originalText = "ここに翻訳前のテキストが入る",
-  targetLang = "EN"
-}: Props) => {
+const Main = ({ translatedText, originalText, targetLang }: Props) => {
   return (
     <ThemeProvider emotionCache={styleCache}>
       <div className="absolute w-full left-0 top-0 z-50">
@@ -130,4 +129,19 @@ const Main = ({
   )
 }
 
-export default Main
+const Container = () => {
+  const { data } = useMessage<ShowRequest, undefined>(async (_req, _res) => {})
+  const { lang, translatedText, originalText } = data.body
+
+  if (!data || data.name !== "show") return
+
+  return (
+    <Main
+      targetLang={lang}
+      translatedText={translatedText}
+      originalText={originalText}
+    />
+  )
+}
+
+export default Container

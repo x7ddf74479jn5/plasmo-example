@@ -4,6 +4,7 @@ specifiers:
   '@emotion/react': 11.10.6
   '@mantine/core': 6.0.2
   '@mantine/hooks': 6.0.2
+  '@plasmohq/messaging': 0.1.6
   '@plasmohq/prettier-plugin-sort-imports': 3.6.3
   '@plasmohq/storage': 1.3.1
   '@types/chrome': 0.0.210
@@ -25,6 +26,7 @@ dependencies:
   '@emotion/react': 11.10.6_3stiutgnnbnfnf3uowm5cip22i
   '@mantine/core': 6.0.2_wumdvvqpx6vnjkmkoljhne4sdi
   '@mantine/hooks': 6.0.2_react@18.2.0
+  '@plasmohq/messaging': 0.1.6_react@18.2.0
   '@plasmohq/storage': 1.3.1_react@18.2.0
   plasmo: 0.67.4_gjpyg5imi5mt2gbvkmn3a4dr7m
   react: 18.2.0
@@ -1949,6 +1951,17 @@ packages:
 
   /@plasmohq/init/0.6.2:
     resolution: {integrity: sha512-4fA29jzUU5tHpsJ3rpUEbt/jme/aCDIqolAbTWd6F7M4rJ/33q4mVQ6eIflWjUhVNcygjpjMApdT2gIrNQi0fw==}
+    dev: false
+
+  /@plasmohq/messaging/0.1.6_react@18.2.0:
+    resolution: {integrity: sha512-GYryyzijju3dg3RwMGoEIuGct0vgxdBfxZH/54GPh7ZbjYvOVikyfLp7Rn9rsrGqXLdsJ8+YeHUCgQEPvBJakA==}
+    peerDependencies:
+      react: ^16.8.6 || ^17 || ^18
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@plasmohq/parcel-bundler/0.4.8:
