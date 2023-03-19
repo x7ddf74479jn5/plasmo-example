@@ -11,7 +11,8 @@ export const translate = async (
   selectedText: string,
   userTargetLang: string
 ) => {
-  const API_KEY = process.env.DEEPL_API_KEY
+  // WARNING: API key is public
+  const API_KEY = process.env.PLASMO_PUBLIC_DEEPL_API_KEY
   const API_URL = "https://api-free.deepl.com/v2/translate"
   const params = {
     auth_key: API_KEY,

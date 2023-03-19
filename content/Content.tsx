@@ -12,7 +12,7 @@ import {
   Tooltip
 } from "@mantine/core"
 import { useClickOutside } from "@mantine/hooks"
-import IconUrl from "data-base64:~assets/images/icon.png"
+import IconUrl from "data-base64:~assets/icon.png"
 import { useState } from "react"
 import { MdDone, MdOutlineContentCopy, MdVolumeUp } from "react-icons/md"
 

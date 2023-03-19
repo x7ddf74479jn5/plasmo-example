@@ -2,9 +2,6 @@ import { Storage } from "@plasmohq/storage"
 
 import { translate } from "~app/translate"
 
-const storage = new Storage()
-const lang = await storage.get("target_lang")
-
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "translation",
@@ -15,6 +12,9 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   if (!!tab) {
+    const storage = new Storage()
+    const lang = await storage.get("target_lang")
+
     switch (info.menuItemId) {
       case "translation": {
         const selectedText =
